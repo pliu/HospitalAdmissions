@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum role: [:charge_nurse, :doctor, :medical_staff, :staff]
+  enum role: [:charge_nurse, :doctor, :medical_staff, :staff, :medical_director]
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
