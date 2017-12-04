@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204035944) do
+ActiveRecord::Schema.define(version: 20171204160822) do
 
   create_table "admission_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "patient_id",                null: false
@@ -98,6 +98,34 @@ ActiveRecord::Schema.define(version: 20171204035944) do
     t.integer  "role"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_trigger("admissions_after_insert_row_tr", :generated => true, :compatibility => 1).
+      on("admissions").
+      after(:insert) do
+    <<-SQL_ACTIONS
+
+    DECLARE x INT;
+    DECLARE y INT;
+    SET x = (SELECT COUNT(*) FROM admissions WHERE division_id = NEW.division_id);
+    SET y = (SELECT total_beds FROM divisions WHERE id = NEW.division_id);
+    IF x = y THEN
+      UPDATE divisions
+      SET status = 0
+      WHERE id = NEW.division_id;
+    END IF;
+    SQL_ACTIONS
+  end
+
+  create_trigger("admissions_after_delete_row_tr", :generated => true, :compatibility => 1).
+      on("admissions").
+      after(:delete) do
+    <<-SQL_ACTIONS
+
+    UPDATE divisions
+    SET status = 1
+    WHERE id = OLD.division_id;
+    SQL_ACTIONS
   end
 
 end
