@@ -10,7 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203022146) do
+ActiveRecord::Schema.define(version: 20171204035944) do
+
+  create_table "admission_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "patient_id",                null: false
+    t.integer  "division_id",               null: false
+    t.text     "rational",    limit: 65535
+    t.integer  "priority"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["division_id"], name: "index_admission_requests_on_division_id", using: :btree
+    t.index ["patient_id"], name: "index_admission_requests_on_patient_id", using: :btree
+  end
+
+  create_table "admissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "patient_id",       null: false
+    t.integer  "division_id",      null: false
+    t.integer  "room_num",         null: false
+    t.integer  "bed_num",          null: false
+    t.string   "insurance_string"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["division_id"], name: "index_admissions_on_division_id", using: :btree
+    t.index ["patient_id"], name: "index_admissions_on_patient_id", using: :btree
+  end
+
+  create_table "divisions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "charge_nurse_id", null: false
+    t.string   "division_name",   null: false
+    t.string   "location",        null: false
+    t.integer  "total_beds",      null: false
+    t.string   "extension",       null: false
+    t.integer  "status",          null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["charge_nurse_id"], name: "index_divisions_on_charge_nurse_id", using: :btree
+  end
+
+  create_table "drugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "insurance_string",               null: false
+    t.string   "first_name",                     null: false
+    t.string   "last_name",                      null: false
+    t.string   "address",                        null: false
+    t.string   "phone_number",                   null: false
+    t.datetime "dob",                            null: false
+    t.integer  "gender",                         null: false
+    t.integer  "marital_status",                 null: false
+    t.text     "nok",              limit: 65535
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["insurance_string"], name: "index_patients_on_insurance_string", unique: true, using: :btree
+  end
+
+  create_table "prescriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "patient_id",    null: false
+    t.integer  "drug_id",       null: false
+    t.integer  "daily_units",   null: false
+    t.integer  "admin_per_day", null: false
+    t.string   "admin_method",  null: false
+    t.datetime "start",         null: false
+    t.datetime "end"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["drug_id"], name: "index_prescriptions_on_drug_id", using: :btree
+    t.index ["patient_id"], name: "index_prescriptions_on_patient_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false

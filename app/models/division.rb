@@ -1,3 +1,6 @@
 class Division < ApplicationRecord
-  has_one :charge_nurse, class_name: "User"
+  belongs_to :charge_nurse, class_name: "User"
+  has_many :admissions
+
+  enum status: [:full, :available]
 end
