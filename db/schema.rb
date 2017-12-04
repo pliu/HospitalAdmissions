@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204160822) do
+ActiveRecord::Schema.define(version: 20171204192846) do
 
   create_table "admission_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "patient_id",                null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171204160822) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["division_id"], name: "index_admissions_on_division_id", using: :btree
-    t.index ["patient_id"], name: "index_admissions_on_patient_id", using: :btree
+    t.index ["patient_id"], name: "index_admissions_on_patient_id", unique: true, using: :btree
   end
 
   create_table "divisions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
