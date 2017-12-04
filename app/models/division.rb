@@ -15,6 +15,6 @@ class Division < ApplicationRecord
   protected
 
   def set_default_status
-    self.role ||= :available
+    self.status ||= :available
   end
 end
