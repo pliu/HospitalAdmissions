@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource_or_scope)
     if current_user.role == 'staff'
       puts 'Staff'
-      return root_path
+      return '/staff'
     elsif current_user.role == 'charge_nurse'
       puts 'Nurse'
       return '/charge_nurse'
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
       elsif current_user.role == 'doctor'
         redirect_to doctor_path
       else
-        redirect_to root_path
+        super
       end
     else
       redirect_to new_user_session_path

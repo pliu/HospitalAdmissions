@@ -13,8 +13,12 @@
   <% if user_signed_in? %>
     <ul>
       <li><%= link_to 'Consult Patient File', '/consult_patient_file', :method => :get %></li>
-      <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
 
+      <% if current_user.role != 'staff' %>
+      <li><%= link_to 'Register Patient', '/', :method => :get %></li>
+      <%end%>
+
+      <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
     </ul>
   <% end %>
 
