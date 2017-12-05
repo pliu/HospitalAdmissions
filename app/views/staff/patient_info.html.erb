@@ -1,0 +1,25 @@
+<p>First Name: <%= @patient_info.first_name %></p>
+<p>Last Name: <%= @patient_info.last_name %></p>
+<p>Address: <%= @patient_info.address %></p>
+<p>Phone: <%= @patient_info.phone_number %></p>
+<p>Date of Birth: <%= @patient_info.dob  %></p>
+<p>Gender:
+
+<% if @patient_info.gender == 0 %>
+  male
+<% else %>
+  female
+<% end %>
+</p>
+
+<p>Marital Status:
+
+  <% if @patient_info.marital_status == 0 %>
+    single
+  <% else %>
+    marries
+  <% end %>
+</p>
+
+
+<p>Next of Kin: <%= @patient_info.nok  %></p>

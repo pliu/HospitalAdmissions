@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   #use cases
   get 'consult_patient_file', to: 'staff#consult_patient_file'
+  get 'patient_info', to: 'staff#patient_info'
 end
