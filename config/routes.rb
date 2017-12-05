@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   get 'doctor', to: 'doctor#index'
   get 'medical', to: 'medical#index'
   get 'charge_nurse', to: 'nurse#index'
+
+  #use cases
+  get 'consult_patient_file', to: 'staff#consult_patient_file'
+  get 'patient_info', to: 'staff#patient_info'
 end
