@@ -11,12 +11,15 @@ class ApplicationController < ActionController::Base
       return '/'
     elsif current_user.role == 'charge_nurse'
       puts 'Nurse'
-      return '/nurse#index'
+      return '/charge_nurse'
     elsif current_user.role == 'doctor'
       puts 'Doctor'
-      return '/doctor#index'
+      return '/doctor'
+    elsif current_user.role == 'medical_staff'
+      puts 'Medical Staff'
+      return '/medical'
     else
-      puts 'RIP'
+      puts 'RIP: Weird re-direct after sign in'
     end
   end
 

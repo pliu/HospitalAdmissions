@@ -6,7 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-nurse_teriyaki = User.create!({'password': 'password1', 'email': 'teriyaki@test.com'})
+nurse_teriyaki = User.create!({'password': 'password1', 'email': 'nurse@test.com', role:0})
+doctor = User.create!({'password': 'password1', 'email': 'doctor@test.com', role:1})
+medical = User.create!({'password': 'password1', 'email': 'medical@test.com', role:2})
+staff = User.create!({'password': 'password1', 'email': 'staff@test.com', role:3})
+
 division_er = Division.create!({'charge_nurse': nurse_teriyaki, 'division_name': 'ER', 'location': 'CA',
                                 'total_beds': 10, 'extension': '7584'})
 patient_easter = Patient.create!({'insurance_string': 'abcde', 'first_name': 'Easter', 'last_name': 'Bunny',
