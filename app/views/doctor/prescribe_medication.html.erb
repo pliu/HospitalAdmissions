@@ -1,0 +1,31 @@
+<h2>Prescribe medication</h2>
+
+<%= form_tag(:action => 'create_medication', :method => "get") do %>
+
+  <%= label_tag(:drug_name, "Drug Name:") %>
+  <%= text_field_tag(:drug_name) %>
+  <br>
+  <%= label_tag(:daily_units, "Daily Units:") %>
+  <%= text_field_tag(:daily_units) %>
+  <br>
+
+  <%= label_tag(:admin_per_day, "Admin Per Day") %>
+  <%= text_field_tag(:admin_per_day) %>
+  <br>
+
+  <%= label_tag(:admin_method, "Admin Method") %>
+  <%= text_field_tag(:admin_method) %>
+  <br>
+
+  <%= label_tag(:start, "Start Date") %>
+  <%= date_field_tag(:start) %>
+  <br>
+
+  <%= label_tag(:end, "End Date") %>
+  <%= date_field_tag(:end) %>
+  <br>
+  <br>
+
+  <%= submit_tag "Prescribe" %>
+
+<% end -%>
