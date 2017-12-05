@@ -2,13 +2,20 @@
 <html>
   <head>
     <title>HospitalAdmissions</title>
+    <%= javascript_include_tag :application %>
     <%= csrf_meta_tags %>
-
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+
   <% if user_signed_in? %>
-  <%= button_to'Logout', destroy_user_session_path, :method => :delete%>
+    <ul>
+      <li><%= link_to 'Consult Patient File', '/consult_patient_file', :method => :get %></li>
+      <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+
+    </ul>
   <% end %>
 
   <p class="notice"><%= notice %></p>
