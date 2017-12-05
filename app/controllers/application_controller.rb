@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource_or_scope)
     if current_user.role == 'staff'
       puts 'Staff'
-      return '/'
+      return root_path
     elsif current_user.role == 'charge_nurse'
       puts 'Nurse'
       return '/charge_nurse'
@@ -29,11 +29,29 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     if user_signed_in?
-      super
+      if current_user.role == 'charge_nurse'
+        redirect_to charge_nurse_path
+      elsif current_user.role == 'doctor'
+        redirect_to doctor_path
+      else
+        redirect_to root_path
+      end
     else
       redirect_to new_user_session_path
       ## if you want render 404 page
       ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
+    end
+  end
+
+  def authenticate_doctor!
+    if current_user.role != 'doctor'
+      redirect_to root_path
+    end
+  end
+
+  def authenticate_nurse!
+    if current_user.role != 'charge_nurse'
+      redirect_to root_path
     end
   end
 end
