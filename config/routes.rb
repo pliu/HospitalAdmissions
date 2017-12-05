@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   get 'patient_info', to: 'staff#patient_info'
 
   get 'prescribe_medication', to: 'doctor#prescribe_medication'
-  get 'create_medication', to:'staff#patient_info'
+  post 'doctor/create_medication'
 end

@@ -1,8 +1,7 @@
 <h2>Consult Patient File</h2>
 
-
-<%= form_tag('/patient_info', :method => "get") do %>
-  <%= label_tag(:patID, "Patient Insurance #:") %>
-  <%= text_field_tag(:patID) %>
+<%= form_tag('/patient_info', :method => "get", params: {patId: :patId}) do %>
+  <%= label_tag(:patId, "Patient Insurance #:") %>
+  <%= text_field_tag(:patId) %>
   <%= submit_tag("Search") %>
 <% end %>

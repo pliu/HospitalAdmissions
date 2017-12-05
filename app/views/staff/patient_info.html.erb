@@ -34,14 +34,14 @@
     <th class="tg-yw4l">Start</th>
     <th class="tg-yw4l">End</th>
   </tr>
-  <% @patient_info.prescriptions do |p| %>
+  <% @patient_info.prescriptions.each do |p| %>
     <tr>
-      <td class="tg-yw4l">p.drug</td>
-      <td class="tg-yw4l">p.daily_units</td>
-      <td class="tg-yw4l">p.admin_per_day</td>
-      <td class="tg-yw4l">p.admin_method</td>
-      <td class="tg-yw4l">p.start</td>
-      <td class="tg-yw4l">p.end</td>
+      <td class="tg-yw4l"><%= p.drug.name %></td>
+      <td class="tg-yw4l"><%= p.daily_units %></td>
+      <td class="tg-yw4l"><%= p.admin_per_day %></td>
+      <td class="tg-yw4l"><%= p.admin_method %></td>
+      <td class="tg-yw4l"><%= p.start %></td>
+      <td class="tg-yw4l"><%= p.end %></td>
     </tr>
   <% end %>
 </table>
@@ -54,3 +54,14 @@
 <%= button_to "Prescribe Medication", '/prescribe_medication', method: :get, params: {patient: @patient_info, patId: @patId} %>
 <% end %>
 
+<% if current_user.role == 'medical' %>
+  <%= button_to "Update Patient File", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
+<% end %>
+
+<% if current_user.role == 'charge_nurse' %>
+  <%= button_to "Admit Patient", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
+<% end %>
+
+<% if current_user.role == 'charge_nurse' %>
+  <%= button_to "Discharge Patient", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
+<% end %>

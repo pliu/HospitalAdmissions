@@ -1,6 +1,6 @@
 <h2>Prescribe medication</h2>
 
-<%= form_tag(:action => 'create_medication', :method => "get") do %>
+<%= form_tag(:action => 'create_medication', :method => "post", params: {patient: @patient, patId: @patId}) do %>
 
   <%= label_tag(:drug_name, "Drug Name:") %>
   <%= text_field_tag(:drug_name) %>

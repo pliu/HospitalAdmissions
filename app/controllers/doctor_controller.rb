@@ -6,35 +6,33 @@ class DoctorController < ApplicationController
   end
 
   def prescribe_medication
-    puts "PRESCRIBE MEDICATION"
-    @patId = params[:patId]
     @patient = params[:patient]
-
-    puts 'id', @patId
-    puts 'pat', @patient
-
+    @patId = params[:patId]
   end
 
   def create_medication
-
-    @drug = Drug.new(name: 'Hello')
-    @drug.save
+    @drug = Drug.new(name: params[:drug_name] )
+    @drug.save!
 
     puts 'drg', @drug.id
 
+    @patient = params[:patient]
+    @patId = params[:patId]
+
     @prescription = Prescription.new({
                                          'patient_id':@patient,
-                                         'drugs_id':@drug.id,
+                                         'drug_id':@drug.id,
                                          'daily_units':params[:daily_units],
-                                         'admin_per+day':params[:admin_per_day],
+                                         'admin_per_day':params[:admin_per_day],
                                          'admin_method':params[:admin_method],
                                          'start':params[:start],
                                          'end':params[:end]
                                      })
 
-    @prescription.save
+    @prescription.save!
 
-    redirect_to :action => '/patient_info'
+
+    redirect_to('/patient_info?patId='+@patId)
   end
 
 end
