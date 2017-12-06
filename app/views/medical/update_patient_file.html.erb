@@ -6,27 +6,74 @@
 </head>
 <body>
   <h2>Altering Patient File</h2>
-  <!-- <%= form_tag(:action => 'update_patient', :method => "put", params: {patient: @patient}) do %> -->
-  <table>
+  <%= form_tag(:action => 'edit_patient_info', :method => :put, params: {patient: @patient, patId: @patId}) do %>
+  <table width="700px" style="text-align: left">
     <tr>
+      <th></th>
       <th>Old Information</th>
       <th>New Information</th>
     </tr>
     <tr>
-      <td>Insurance: <%= @patient_info.insurance_string %></td>
-      <td></td>
+      <td>Insurance: </td>
+      <td><%= @patient.insurance_string %></td>
+      <td>
+        <%= text_field_tag :insurance_string %>
+      </td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>First Name: </td>
+      <td><%= @patient.first_name %></td>
+      <td>
+        <%= text_field_tag :first_name %>
+      </td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Last Name: </td>
+      <td><%= @patient.last_name %></td>
+      <td>
+        <%= text_field_tag :last_name %>
+      </td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Address: </td>
+      <td><%= @patient.address %></td>
+      <td>
+        <%= text_field_tag :address %>
+      </td>
+    </tr>
+    <tr>
+      <td>Telephone: </td>
+      <td><%= @patient.phone_number %></td>
+      <td>
+        <%= text_field_tag :phone_number %>
+      </td>
+    </tr>
+    <tr>
+      <td>Date of birth: </td>
+      <td><%= @patient.dob %></td>
+      <td>
+        <%= date_field_tag :dob %>
+      </td>
+    </tr>
+    <tr>
+      <td>Gender: </td>
+      <td><%= @patient.gender %></td>
+      <td>
+        <%= radio_button_tag(:gender, "male") %>
+        <%= label_tag(:gender_male,   "Male") %>
+        <%= radio_button_tag(:gender, "female") %>
+        <%= label_tag(:gender_female, "Female") %>
+      </td>
+    </tr>
+    <tr>
+      <td>Marital status:: </td>
+      <td><%= @patient.marital_status %></td>
+      <td>
+        <%= radio_button_tag(:marital_status, "single") %>
+        <%= label_tag(:single_status,   "Single") %>
+        <%= radio_button_tag(:marital_status, "married") %>
+        <%= label_tag(:married_status, "Married") %>
+      </td>
     </tr>
   </table>
   <%= submit_tag "Update Patient" %>

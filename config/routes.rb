@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   post 'medical/add_patient'
 
   get 'update_patient_file', to: 'medical#update_patient_file'
-  put 'medical/update_patient'
+  post 'medical/edit_patient_info'
   
   delete 'nurse/discharge_patient'
 
