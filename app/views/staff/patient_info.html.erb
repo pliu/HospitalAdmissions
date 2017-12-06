@@ -8,7 +8,7 @@
   <p>Date of Birth: <%= @patient_info.dob  %></p>
   <p>Gender:
 
-  <% if @patient_info.gender == 0 %>
+  <% if @patient_info.gender == 'male' %>
     male
   <% else %>
     female
@@ -17,10 +17,10 @@
 
   <p>Marital Status:
 
-    <% if @patient_info.marital_status == 0 %>
+    <% if @patient_info.marital_status == 'single' %>
       single
     <% else %>
-      marries
+      married
     <% end %>
   </p>
 
