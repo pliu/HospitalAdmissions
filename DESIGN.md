@@ -50,8 +50,25 @@ below.
 ### View validation
 
 
+### Controller validation
+The majority of business logic resides in the controllers.
+It is within the controllers that we ensure that only
+authorized users are able to access various functionalities
+as per the requirements.
+
 ### Model validation
+We add model validation to ensure certain fields exist prior
+to creating a model object (and subsequently storing it).
+This is a good way to check for mandatory fields.
+Additionally, some fields have additional sanity checks at
+this level, such as ensuring that the number of beds
+available in a divison is greater than 0 or that a phone
+number must be 10 characters long.
 
-
-### DB constraints/triggers
-
+### Database constraints/triggers
+We further constrain data at the database level as well
+(e.g.: mandatory fields be non-nullable). Additionally, to
+maintain consistency, we have also implemented triggers to
+perform conditional updates that are a consequence of other
+operations (e.g.: setting the status of a division to full
+or available as admissions are created and deleted).
