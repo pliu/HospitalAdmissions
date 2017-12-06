@@ -42,9 +42,12 @@ Run the server: In the folder containing this project, run:
 rails s
 
 ## Seeded users
-
 nurse => password: password1, email: nurse@test.com
+
 doctor => password: password1, email: doctor@test.com
+
 medical => password: password1, email: medical@test.com
+
 staff => password: password1, email: staff@test.com
+
 admin => password: password1, email: admin@test.com
