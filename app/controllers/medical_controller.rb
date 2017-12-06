@@ -24,4 +24,14 @@ class MedicalController < ApplicationController
     @patId = params[:insurance_string]
     redirect_to('/patient_info?patId='+@patId)
   end
+
+  def update_patient_file
+
+
+    render 'update_patient_file'
+  end
+
+  def update_patient
+
+  end
 end

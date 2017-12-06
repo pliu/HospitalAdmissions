@@ -66,9 +66,9 @@
   <%= button_to "Prescribe Medication", '/prescribe_medication', method: :get, params: {patient: @patient_info, patId: @patId} %>
   <% end %>
 
-  <% if current_user.role == 'medical' %>
+  <% if current_user.role != 'staff' %>
     <br>
-    <%= button_to "Update Patient File", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
+    <%= button_to "Update Patient File", '/update_patient_file', method: :get, params: {patient: @patient_info, patId: @patId} %>
   <% end %>
 
   <% if current_user.role == 'charge_nurse' %>

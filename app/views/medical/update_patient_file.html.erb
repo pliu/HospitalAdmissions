@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <h2>Altering Patient File</h2>
+  <!-- <%= form_tag(:action => 'update_patient', :method => "put", params: {patient: @patient}) do %> -->
+  <table>
+    <tr>
+      <th>Old Information</th>
+      <th>New Information</th>
+    </tr>
+    <tr>
+      <td>Insurance: <%= @patient_info.insurance_string %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <%= submit_tag "Update Patient" %>
+  <% end -%>
+</body>
+</html>
