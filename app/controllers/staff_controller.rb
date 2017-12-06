@@ -6,9 +6,10 @@ class StaffController < ApplicationController
     puts "PATIENT_INFO"
     puts params
     @patId = params[:patId]
-    @patient_info = Patient.where(insurance_string: @patId).take
+    @patient_info = Patient.where(insurance_string: @patId).first
 
     puts @patient_info
+
     render 'patient_info'
   end
 end

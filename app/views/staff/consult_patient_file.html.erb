@@ -2,6 +2,6 @@
 
 <%= form_tag('/patient_info', :method => "get", params: {patId: :patId}) do %>
   <%= label_tag(:patId, "Patient Insurance #:") %>
-  <%= text_field_tag(:patId) %>
+  <%= text_field_tag :patId, '', :required => true %>
   <%= submit_tag("Search") %>
 <% end %>

@@ -18,6 +18,9 @@ class ApplicationController < ActionController::Base
     elsif current_user.role == 'medical_staff'
       puts 'Medical Staff'
       return '/medical'
+    elsif current_user.role == 'admin'
+      puts 'Admin'
+      return '/admin'
     else
       puts 'RIP: Weird re-direct after sign in'
     end
@@ -33,6 +36,10 @@ class ApplicationController < ActionController::Base
         redirect_to charge_nurse_path
       elsif current_user.role == 'doctor'
         redirect_to doctor_path
+      elsif current_user.role == 'medical_staff'
+        redirect_to medical_staff_path
+      elsif current_user.role == 'admin'
+        redirect_to admin_path
       else
         super
       end

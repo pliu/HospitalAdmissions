@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   get 'assign_role', to: 'admin#assign_role'
   post 'admin/change_user_role'
 
+  delete 'nurse/discharge_patient'
+
 end
