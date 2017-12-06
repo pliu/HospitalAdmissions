@@ -47,10 +47,8 @@
   <%= label_tag(:married_status, "Married") %>
   <br>
   <br>
-  <%= submit_tag "Register Patient" %>
-  <%= button_tag "Cancel", :type => 'button' %>
-
-
+  <%= submit_tag "Add Patient" %>
+  <%= submit_tag("Reset Form", { :name => 'reset', :id => 'reset_button', :type => "reset" }) %>
   <% end -%>
 </body>
 </html>

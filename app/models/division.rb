@@ -4,7 +4,7 @@ class Division < ApplicationRecord
   validates :charge_nurse, presence: true
   validates :division_name, presence: true
   validates :location, presence: true
-  validates :total_beds, numericality: { greater_than: 1 }
+  validates :total_beds, numericality: { greater_than: 0 }
   validates :extension, presence: true
 
   belongs_to :charge_nurse, class_name: "User"
