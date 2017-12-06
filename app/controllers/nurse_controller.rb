@@ -3,14 +3,24 @@ class NurseController < ApplicationController
   end
 
   def discharge_patient
-    puts 'AA patientInfo', params[:patient];
-    puts 'AA patId', params[:patId]
-
+    charge_division = get_charge_division
     @admission = Admission.where(patient_id: params[:patient]).first
-    puts 'AA adm', @admission
-    @admission.destroy
-    ##note: database triggers handle incrementing numBeds
+    @permission_to_discharge = !charge_division.nil? && charge_division.id == @admission.division_id
 
-    redirect_to '/consult_patient_file'
+    if(@permission_to_discharge)
+      @admission.destroy
+      redirect_to('/patient_info?patId='+params[:patient])
+    else
+      redirect_to '/lack_permission?msg=You lack discharge permissions.'
+    end
+  end
+
+  def has_discharge_permission?
+
+  end
+
+  def get_charge_division
+    division = Division.where(charge_nurse_id: current_user.id).first
+    return division
   end
 end

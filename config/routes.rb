@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   post 'medical/add_patient'
   
   delete 'nurse/discharge_patient'
+  get 'lack_permission', to: 'staff#lack_permission'
 
 end
