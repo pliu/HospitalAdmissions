@@ -24,7 +24,10 @@ Rails.application.routes.draw do
 
   get 'create_patient', to: 'medical#create_patient'
   post 'medical/add_patient'
-  
+
+  get 'admit_patient', to: 'nurse#admit_patient'
+  post 'nurse/create_admission'
+
   delete 'nurse/discharge_patient'
   get 'lack_permission', to: 'staff#lack_permission'
 
