@@ -1,67 +1,90 @@
-<p>First Name: <%= @patient_info.first_name %></p>
-<p>Last Name: <%= @patient_info.last_name %></p>
-<p>Address: <%= @patient_info.address %></p>
-<p>Phone: <%= @patient_info.phone_number %></p>
-<p>Date of Birth: <%= @patient_info.dob  %></p>
-<p>Gender:
+<% if !@patient_info.nil? %>
+  <h2>Patient File</h2>
+  <p>Insurance: <%= @patient_info.insurance_string %></p>
+  <p>First Name: <%= @patient_info.first_name %></p>
+  <p>Last Name: <%= @patient_info.last_name %></p>
+  <p>Address: <%= @patient_info.address %></p>
+  <p>Phone: <%= @patient_info.phone_number %></p>
+  <p>Date of Birth: <%= @patient_info.dob  %></p>
+  <p>Gender:
 
-<% if @patient_info.gender == 0 %>
-  male
-<% else %>
-  female
-<% end %>
-</p>
-
-<p>Marital Status:
-
-  <% if @patient_info.marital_status == 0 %>
-    single
+  <% if @patient_info.gender == 'male' %>
+    male
   <% else %>
-    marries
+    female
   <% end %>
-</p>
+  </p>
+
+  <p>Marital Status:
+
+    <% if @patient_info.marital_status == 'single' %>
+      single
+    <% else %>
+      married
+    <% end %>
+  </p>
 
 
-<p>Next of Kin: <%= @patient_info.nok  %></p>
+  <p>Next of Kin: <%= @patient_info.nok  %></p>
 
-<p>Prescriptions: </p>
-<table class="tg" width="100%">
-  <tr>
-    <th >Drug</th>
-    <th >Daily Units</th>
-    <th >Admin Per Day</th>
-    <th >Admin Method</th>
-    <th >Start</th>
-    <th >End</th>
-  </tr>
-  <% @patient_info.prescriptions.each do |p| %>
+  <p>
+    Discharged: <% if @patient_info.admissions.length > 0 %> No <% else %> Yes <%end%>
+  </p>
+
+
+  <p>Prescriptions: </p>
+  <table class="tg" width="100%">
     <tr>
-      <td ><%= p.drug.name %></td>
-      <td ><%= p.daily_units %></td>
-      <td ><%= p.admin_per_day %></td>
-      <td ><%= p.admin_method %></td>
-      <td ><%= p.start %></td>
-      <td ><%= p.end %></td>
+      <th >Drug</th>
+      <th >Daily Units</th>
+      <th >Admin Per Day</th>
+      <th >Admin Method</th>
+      <th >Start</th>
+      <th >End</th>
     </tr>
+    <% @patient_info.prescriptions.each do |p| %>
+      <tr>
+        <td ><%= p.drug.name %></td>
+        <td ><%= p.daily_units %></td>
+        <td ><%= p.admin_per_day %></td>
+        <td ><%= p.admin_method %></td>
+        <td ><%= p.start %></td>
+        <td ><%= p.end %></td>
+      </tr>
+    <% end %>
+  </table>
+
+
+
+
+  <br>
+  <br>
+  <br>
+  <h3>Available actions for <%=  current_user.role %>:</h3>
+  <% if current_user.role == 'doctor' %>
+    <br>
+  <%= button_to "Prescribe Medication", '/prescribe_medication', method: :get, params: {patient: @patient_info, patId: @patId} %>
   <% end %>
-</table>
+
+  <% if current_user.role == 'medical' %>
+    <br>
+    <%= button_to "Update Patient File", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
+  <% end %>
+
+  <% if current_user.role == 'charge_nurse' %>
+    <br>
+    <%= button_to "Admit Patient", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
+  <% end %>
+
+  <% if @patient_info.admissions.length > 0 %>
+  <% if current_user.role == 'charge_nurse' %>
+      <br>
+    <%= button_to "Discharge Patient", 'nurse/discharge_patient', method: :delete, params: {patient: @patient_info, patId: @patId} %>
+    <% end %>
+  <% end %>
 
 
-<br>
-<br>
-<br>
-<% if current_user.role == 'doctor' %>
-<%= button_to "Prescribe Medication", '/prescribe_medication', method: :get, params: {patient: @patient_info, patId: @patId} %>
-<% end %>
+<%else %>
 
-<% if current_user.role == 'medical' %>
-  <%= button_to "Update Patient File", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
-<% end %>
-
-<% if current_user.role == 'charge_nurse' %>
-  <%= button_to "Admit Patient", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
-<% end %>
-
-<% if current_user.role == 'charge_nurse' %>
-  <%= button_to "Discharge Patient", '/', method: :get, params: {patient: @patient_info, patId: @patId} %>
-<% end %>
+  <h2>No patient with insurance <%= @patId %></h2>
+<%end%>

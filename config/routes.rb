@@ -24,4 +24,7 @@ Rails.application.routes.draw do
 
   get 'create_patient', to: 'medical#create_patient'
   post 'medical/add_patient'
+  
+  delete 'nurse/discharge_patient'
+
 end

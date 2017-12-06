@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  enum role: [:charge_nurse, :doctor, :medical_staff, :staff, :medical_director, :admin]
+  enum role: [:charge_nurse, :doctor, :medical_staff, :staff, :admin]
 
   protected
 
