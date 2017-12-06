@@ -1,0 +1,26 @@
+<h2>Admit Patient</h2>
+
+
+<%= form_tag(:action => 'create_admission', :method => "post", params: {patient: @patientId, patId: @patId, divisionId: @division}) do %>
+
+  <%= label_tag('', "Division:") %>
+  <%= p @division.division_name %>
+  <br>
+  <br>
+  <%= label_tag(:room_num, "Room Num:") %>
+  <%= text_field_tag :room_num, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:bed_num, "Bed Num:") %>
+  <%= text_field_tag :bed_num, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:insurance_number, "Optional private insurance num:") %>
+  <%= text_field_tag :insurance_number %>
+  <br>
+  <br>
+  <%= submit_tag "Admit Patient" %>
+  <%= button_tag "Clear", type: :reset %>
+
+
+<% end -%>
