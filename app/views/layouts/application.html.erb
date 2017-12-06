@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HospitalAdmissions</title>
-    <%= javascript_include_tag :application %>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>HospitalAdmissions</title>
+  <%= javascript_include_tag :application %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-
-
+<body>
   <% if user_signed_in? %>
-    <ul>
-      <!--admin links-->
-      <% if current_user.role == 'admin' %>
-        <li><%= link_to 'Change Roles', '/admin', :method => :get %></li>
-      <%end%>
+  <ul>
+    <!--admin links-->
+    <% if current_user.role == 'admin' %>
+    <li><%= link_to 'Change Roles', '/admin', :method => :get %></li>
+    <%end%>
 
-      <!--medical staff links-->
-      <% if current_user.role != 'staff' %>
-      <li><%= link_to 'Register Patient', '/', :method => :get %></li>
-      <%end%>
+    <!--medical staff links-->
+    <% if current_user.role != 'staff' %>
+    <li><%= link_to 'Register Patient', '/create_patient', :method => :get %></li>
+    <%end%>
 
-      <!--all links-->
-      <li><%= link_to 'Consult Patient File', '/consult_patient_file', :method => :get %></li>
-      <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-    </ul>
+    <!--all links-->
+    <li><%= link_to 'Consult Patient File', '/consult_patient_file', :method => :get %></li>
+    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+  </ul>
   <% end %>
 
   <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+</body>
 </html>

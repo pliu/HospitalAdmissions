@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   get 'assign_role', to: 'admin#assign_role'
   post 'admin/change_user_role'
 
+  get 'create_patient', to: 'medical#create_patient'
+  post 'medical/add_patient'
 end

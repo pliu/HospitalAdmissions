@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <h2>Register Patient</h2>
+
+  <%= form_tag(:action => 'add_patient', :method => "post", params: {patient: @patient}) do %>
+
+  <%= label_tag(:insurance_string, "Insurance number:") %>
+  <%= text_field_tag :insurance_string, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:first_name, "First name:") %>
+  <%= text_field_tag :first_name, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:last_name, "Last name:") %>
+  <%= text_field_tag :last_name, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:address, "Address:") %>
+  <%= text_field_tag :address, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:phone_number, "Telephone:") %>
+  <%= telephone_field_tag :phone_number, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:dob, "Date of birth:") %>
+  <%= date_field_tag :dob, '', :required => true %>
+  <br>
+  <br>
+  <%= label_tag(:gender, "Gender:") %>
+  <%= radio_button_tag(:gender, "male") %>
+  <%= label_tag(:gender_male,   "Male") %>
+  <%= radio_button_tag(:gender, "female") %>
+  <%= label_tag(:gender_female, "Female") %>
+  <br>
+  <br>
+  <%= label_tag(:marital_status, "Marital status:") %>
+  <%= radio_button_tag(:marital_status, "single") %>
+  <%= label_tag(:single_status,   "Single") %>
+  <%= radio_button_tag(:marital_status, "married") %>
+  <%= label_tag(:married_status, "Married") %>
+  <br>
+  <br>
+  <%= submit_tag "Add Patient" %>
+  <%= button_tag "Cancel", :type => 'button' %>
+
+
+  <% end -%>
+</body>
+</html>
