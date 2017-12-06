@@ -27,21 +27,21 @@
 <p>Prescriptions: </p>
 <table class="tg" width="100%">
   <tr>
-    <th class="tg-yw4l">Drug</th>
-    <th class="tg-yw4l">Daily Units</th>
-    <th class="tg-yw4l">Admin Per Day</th>
-    <th class="tg-yw4l">Admin Method</th>
-    <th class="tg-yw4l">Start</th>
-    <th class="tg-yw4l">End</th>
+    <th >Drug</th>
+    <th >Daily Units</th>
+    <th >Admin Per Day</th>
+    <th >Admin Method</th>
+    <th >Start</th>
+    <th >End</th>
   </tr>
   <% @patient_info.prescriptions.each do |p| %>
     <tr>
-      <td class="tg-yw4l"><%= p.drug.name %></td>
-      <td class="tg-yw4l"><%= p.daily_units %></td>
-      <td class="tg-yw4l"><%= p.admin_per_day %></td>
-      <td class="tg-yw4l"><%= p.admin_method %></td>
-      <td class="tg-yw4l"><%= p.start %></td>
-      <td class="tg-yw4l"><%= p.end %></td>
+      <td ><%= p.drug.name %></td>
+      <td ><%= p.daily_units %></td>
+      <td ><%= p.admin_per_day %></td>
+      <td ><%= p.admin_method %></td>
+      <td ><%= p.start %></td>
+      <td ><%= p.end %></td>
     </tr>
   <% end %>
 </table>

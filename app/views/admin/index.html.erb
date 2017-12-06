@@ -1,0 +1,17 @@
+<h2>Change User Roles</h2>
+
+<table width="500px" style="text-align:left">
+  <tr>
+    <th>User Email</th>
+    <th>Current Role</th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <td><%= button_to "Change Role", '/assign_role', method: :get, params: {userId: user.id} %></td>
+    </tr>
+  <% end %>
+
+</table>

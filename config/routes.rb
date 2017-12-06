@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -15,4 +17,9 @@ Rails.application.routes.draw do
 
   get 'prescribe_medication', to: 'doctor#prescribe_medication'
   post 'doctor/create_medication'
+
+  get 'admin', to: 'admin#index'
+  get 'assign_role', to: 'admin#assign_role'
+  post 'admin/change_user_role'
+
 end

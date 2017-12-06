@@ -12,12 +12,18 @@
 
   <% if user_signed_in? %>
     <ul>
-      <li><%= link_to 'Consult Patient File', '/consult_patient_file', :method => :get %></li>
+      <!--admin links-->
+      <% if current_user.role == 'admin' %>
+        <li><%= link_to 'Change Roles', '/admin', :method => :get %></li>
+      <%end%>
 
+      <!--medical staff links-->
       <% if current_user.role != 'staff' %>
       <li><%= link_to 'Register Patient', '/', :method => :get %></li>
       <%end%>
 
+      <!--all links-->
+      <li><%= link_to 'Consult Patient File', '/consult_patient_file', :method => :get %></li>
       <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
     </ul>
   <% end %>

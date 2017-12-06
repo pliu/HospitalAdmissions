@@ -1,0 +1,15 @@
+
+<%= form_tag(:action => 'change_user_role', :method => "post", params: {userId: @userId}) do %>
+  <p>User email: <%= @user.email %></p>
+  <p>Old Role: <%= @user.role %></p>
+  <%= label_tag(:role, "New Role #:") %>
+  <%= select_tag(:newRole, options_for_select([['Charge Nurse', 'charge_nurse'],
+                                               ['Doctor', 'doctor'],
+                                               ['Medical Staff', 'medical_staff'],
+                                               ['Staff', 'staff'],
+                                               ['Medical Director', 'medical_director'],
+                                               ['Admin', 'admin']])  ) %>
+
+  <%= submit_tag "Change Role" %>
+
+<% end %>
