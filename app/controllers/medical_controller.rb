@@ -20,5 +20,8 @@ class MedicalController < ApplicationController
       'marital_status':params[:marital_status],
       })
     @patient.save!
+
+    @patId = params[:insurance_string]
+    redirect_to('/patient_info?patId='+@patId)
   end
 end
