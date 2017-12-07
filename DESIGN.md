@@ -48,7 +48,10 @@ We have input validation at multiple levels as demonstrated
 below.
 
 ### View validation
-
+Simple validation can be performed in the view before any
+communication overhead is even incurred and we do so. Examples
+include checking that the e-mail field looks like a valid
+e-mail (i.e.: using a regex <x>@<y>.<z>).
 
 ### Controller validation
 The majority of business logic resides in the controllers.
